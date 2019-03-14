@@ -9,10 +9,8 @@
 
 namespace FnacApiClient\Service\Request;
 
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\SerializerInterface;
-
 use FnacApiClient\Entity\Order;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * OrderUpdate Service's definition.
@@ -27,6 +25,7 @@ class OrderUpdate extends Authentified
     const XSD_FILE = "OrdersUpdateService.xsd";
     const CLASS_RESPONSE = "FnacApiClient\Service\Response\OrderUpdateResponse";
 
+    /** @var \ArrayObject|Order[] */
     private $orders = array();
 
     /**

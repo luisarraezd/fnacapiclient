@@ -9,8 +9,8 @@
 
 namespace FnacApiClient\Service\Request;
 
+use FnacApiClient\Type\ProductStateType;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * OrderQuery Service's definition.
@@ -18,7 +18,6 @@ use Symfony\Component\Serializer\SerializerInterface;
  * @author     Fnac
  * @version    1.0.0
  */
-
 class OrderQuery extends Query
 {
     const ROOT_NAME = "orders_query";
@@ -32,14 +31,14 @@ class OrderQuery extends Query
     private $offer_fnac_id = null;
     private $offer_seller_id = null;
 
-    
+
     public function __construct(array $orderQueryParameters = null)
     {
         if (!empty($orderQueryParameters)) {
             $this->initParameters($orderQueryParameters);
         }
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -52,7 +51,7 @@ class OrderQuery extends Query
         }
 
         if (!is_null($this->product_fnac_id)) {
-            $data['product_fnad_id'] = $this->product_fnad_id;
+            $data['product_fnac_id'] = $this->product_fnac_id;
         }
 
         if (!is_null($this->orders_fnac_id)) {
@@ -84,11 +83,9 @@ class OrderQuery extends Query
     }
 
     /**
-     * Set order to sort
+     * @see \FnacApiClient\Type\SortOrderType
      *
-     * @see FnacApiClient\Type\SortOrderType
-     *
-     * @param string $sort_by_type : Order to sort
+     * @param string
      */
     public function setSortByType($sort_by_type)
     {
@@ -98,7 +95,7 @@ class OrderQuery extends Query
     /**
      * Set product unique identifier from fnac
      *
-     * @param string $product_fnac_id : Product fnac id
+     * @param string
      */
     public function setProductFnacId($product_fnac_id)
     {
@@ -106,21 +103,17 @@ class OrderQuery extends Query
     }
 
     /**
-     * Set orders unique identifier from fnac
+     * Set orders unique identifier from fnac to fetch
      *
-     * @param array $orders_fnac_id : Lits of id to fetch
+     * @param array $orders_fnac_id
      */
-    public function setOrdersFnacId($orders_fnac_id)
+    public function setOrdersFnacId(array $orders_fnac_id)
     {
         $this->orders_fnac_id = $orders_fnac_id;
     }
 
     /**
-     * Set orders states
-     *
-     * @see FnacApiClient\Type\ProductStateType
-     *
-     * @param ArrayObject<ProductStateType> $states : Offer states
+     * @param \ArrayObject|ProductStateType[]
      */
     public function setStates($states)
     {
@@ -128,9 +121,7 @@ class OrderQuery extends Query
     }
 
     /**
-     * Set offer unique identifier from fnac
-     *
-     * @param string $offer_fnac_id : Offer fnac uid
+     * @param string
      */
     public function setOfferFnacId($offer_fnac_id)
     {
@@ -138,9 +129,7 @@ class OrderQuery extends Query
     }
 
     /**
-     * Set offer unique identifier from seller
-     *
-     * @param string $offer_seller_id : Offer seller uid
+     * @param string
      */
     public function setOfferSellerId($offer_seller_id)
     {
