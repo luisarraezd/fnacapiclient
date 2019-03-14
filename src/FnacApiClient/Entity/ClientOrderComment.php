@@ -9,6 +9,7 @@
 
 namespace FnacApiClient\Entity;
 
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**

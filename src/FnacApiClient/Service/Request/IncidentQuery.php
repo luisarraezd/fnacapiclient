@@ -9,14 +9,8 @@
 
 namespace FnacApiClient\Service\Request;
 
+use FnacApiClient\Service\Response\IncidentQueryResponse;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-
-use FnacApiClient\Type\SortOrderType;
-use FnacApiClient\Type\StatusType;
-use FnacApiClient\Type\BoolType;
-use FnacApiClient\Type\UserType;
-use FnacApiClient\Type\IncidentCloseStatusType;
-use FnacApiClient\Type\IncidentOpenStatusType;
 
 /**
  * IncidentQuery Service's definition.
@@ -24,12 +18,11 @@ use FnacApiClient\Type\IncidentOpenStatusType;
  * @author     Fnac
  * @version    1.0.0
  */
-
 class IncidentQuery extends Query
 {
     const ROOT_NAME = "incidents_query";
     const XSD_FILE = "IncidentsQueryService.xsd";
-    const CLASS_RESPONSE = "FnacApiClient\Service\Response\IncidentQueryResponse";
+    const CLASS_RESPONSE = IncidentQueryResponse::class;
 
     private $sort_by = null;
     private $status = null;
@@ -41,7 +34,7 @@ class IncidentQuery extends Query
     private $waiting_for_seller_answer = null;
     private $closed_statuses = null;
 
-    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = array())
+    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = [])
     {
         $data = parent::normalize($normalizer, $format);
 
@@ -93,7 +86,7 @@ class IncidentQuery extends Query
     }
 
     /**
-     * @see FnacApiClient\Type\StatusType
+     * @see \FnacApiClient\Type\StatusType
      *
      * @param string $status : Status of incident
      */

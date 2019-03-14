@@ -9,10 +9,9 @@
 
 namespace FnacApiClient\Service\Request;
 
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\SerializerInterface;
-
 use FnacApiClient\Entity\ProductReference;
+use FnacApiClient\Service\Response\PricesQueryResponse;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * PricingQuery Service's definition.
@@ -26,9 +25,18 @@ class PricesQuery extends Authentified
     const ROOT_NAME = "pricing_query";
     const URL_NAME = "prices_query";
     const XSD_FILE = "PricesQueryService.xsd";
-    const CLASS_RESPONSE = "FnacApiClient\Service\Response\PricesQueryResponse";
+    const CLASS_RESPONSE = PricesQueryResponse::class;
 
     private $product_reference = null;
+
+    /** @var string */
+    private $sellers;
+
+    /** @var string */
+    private $states;
+
+    /** @var string */
+    private $prices;
 
     /**
      * {@inheritdoc}
@@ -43,7 +51,7 @@ class PricesQuery extends Authentified
     /**
      * {@inheritdoc}
      */
-    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = array())
+    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = [])
     {
         $data = parent::normalize($normalizer, $format);
 
@@ -59,7 +67,7 @@ class PricesQuery extends Authentified
             $data['@prices'] = $this->prices;
         }
 
-        $data['product_reference'] = array();
+        $data['product_reference'] = [];
 
         if ($this->product_reference->count() > 1) {
             foreach ($this->product_reference as $product_reference) {
@@ -75,7 +83,7 @@ class PricesQuery extends Authentified
     /**
      * Set seller's type
      *
-     * @see FnacApiClient\Type\SellerType
+     * @see \FnacApiClient\Type\SellerType
      *
      * @param string $sellers : Type of sellers (all, others)
      */
@@ -87,7 +95,7 @@ class PricesQuery extends Authentified
     /**
      * Set product states filter
      *
-     * @see FnacApiClient\Type\PricingProductStateType
+     * @see \FnacApiClient\Type\PricingProductStateType
      *
      * @param string $states : state of products to retrieve
      */
@@ -99,7 +107,7 @@ class PricesQuery extends Authentified
     /**
      * Set prices type filter
      *
-     * @see FnacApiClient\Type\PriceType
+     * @see \FnacApiClient\Type\PriceType
      *
      * @param string $prices : prices type to retrieve
      */

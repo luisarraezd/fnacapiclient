@@ -9,6 +9,7 @@
 
 namespace FnacApiClient\Service\Request;
 
+use FnacApiClient\Service\Response\BatchStatusResponse;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
@@ -17,23 +18,22 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
  * @author     Fnac
  * @version    1.0.0
  */
-
 class BatchStatus extends Authentified
 {
     const ROOT_NAME = "batch_status";
     const XSD_FILE = "BatchStatusService.xsd";
-    const CLASS_RESPONSE = "FnacApiClient\Service\Response\BatchStatusResponse";
+    const CLASS_RESPONSE = BatchStatusResponse::class;
 
     private $batch_id;
 
     /**
      * {@inheritdoc}
      */
-    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = array())
+    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = [])
     {
-        return array_merge(parent::normalize($normalizer, $format), array(
+        return array_merge(parent::normalize($normalizer, $format), [
             'batch_id' => $this->batch_id
-        ));
+        ]);
     }
 
     /**

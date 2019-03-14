@@ -9,9 +9,9 @@
 
 namespace FnacApiClient\Service\Request;
 
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-
 use FnacApiClient\Entity\IncidentOrder;
+use FnacApiClient\Service\Response\IncidentUpdateResponse;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * OfferUpdate Service's definition.
@@ -24,9 +24,10 @@ class IncidentUpdate extends Authentified
 {
     const ROOT_NAME = "incidents_update";
     const XSD_FILE = "IncidentsUpdateService.xsd";
-    const CLASS_RESPONSE = "FnacApiClient\Service\Response\IncidentUpdateResponse";
+    const CLASS_RESPONSE = IncidentUpdateResponse::class;
 
-    private $orders = array();
+    /** @var \ArrayObject|IncidentOrder[] */
+    private $orders = [];
 
     /**
      * {@inheritdoc}
@@ -41,11 +42,11 @@ class IncidentUpdate extends Authentified
     /**
      * {@inheritdoc}
      */
-    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = array())
+    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = [])
     {
         $data = parent::normalize($normalizer, $format);
 
-        $data['order'] = array();
+        $data['order'] = [];
 
         if ($this->orders->count() > 1) {
             foreach ($this->orders as $order) {
@@ -69,13 +70,12 @@ class IncidentUpdate extends Authentified
     }
 
     /**
-     * Add orders incident to service.
-     *
-     * @param Array of IncidentOrder $orders Incident Order to update
+     * @param \ArrayObject|IncidentOrder[] $orders
      */
-    public function addOrders(ArrayObject $orders)
+    public function addOrders($orders)
     {
-        $this->orders = array_merge($this->orders, $orders);
+        foreach ($orders as $order) {
+            $this->addOrder($order);
+        }
     }
-
 }

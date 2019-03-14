@@ -10,10 +10,9 @@
 namespace FnacApiClient\Service\Request;
 
 use FnacApiClient\Service\AbstractService;
+use FnacApiClient\Toolbox\StringObject;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\SerializerInterface;
-use FnacApiClient\Toolbox\StringObject;
 
 /**
  * RequestService service base definition for request.
@@ -29,9 +28,9 @@ abstract class RequestService extends AbstractService
     /**
      * Create service with supplied parameters
      *
-     * Paremeters key are class setter transform from camel case to undescore string (@see FnacApiClient\Toolbox\StringObject )
+     * Paremeters key are class setter transform from camel case to undescore string (@see \FnacApiClient\Toolbox\StringObject )
      * Example :
-     * setOrderFnacId(1) => array('order_fnac_id' => 1)
+     * setOrderFnacId(1) => ['order_fnac_id' => 1]
      *
      * This allow you to set parameters in the way you want
      *
@@ -47,9 +46,9 @@ abstract class RequestService extends AbstractService
     /**
      * {@inheritdoc}
      */
-    public function denormalize(DenormalizerInterface $denormalizer, $data, $format = null, array $context = array())
+    public function denormalize(DenormalizerInterface $denormalizer, $data, $format = null, array $context = [])
     {
-        throw new BadMethodCallException("Can't denormalize a Request Service");
+        throw new \BadMethodCallException("Can't denormalize a Request Service");
     }
 
     /**
@@ -73,7 +72,8 @@ abstract class RequestService extends AbstractService
      * Check if xml generated is valid for the xsd file
      *
      * @param string $xml Xml generated
-     * @return boolean
+     * @return bool
+     * @throws \Exception
      */
     final public function checkXML($xml)
     {
@@ -104,11 +104,9 @@ abstract class RequestService extends AbstractService
     /**
      * {@inheritdoc}
      */
-    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = array())
+    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = [])
     {
-        return array(
-            '@xmlns' => static::FNAC_XMLNS
-        );
+        return ['@xmlns' => static::FNAC_XMLNS];
     }
 
     /**
@@ -116,9 +114,9 @@ abstract class RequestService extends AbstractService
      *
      * Paremeters key are class setter transform from camel case to undescore string (@see FnacApiClient\Toolbox\StringObject )
      * Example :
-     * setOrderFnacId(1) => array('order_fnac_id' => 1)
+     * setOrderFnacId(1) => ['order_fnac_id' => 1]
      *
-     * @param Array $parameters : List of parameter where key is the method name and value the data to set.
+     * @param array $parameters : List of parameter where key is the method name and value the data to set.
      */
     public function initParameters(array $parameters)
     {

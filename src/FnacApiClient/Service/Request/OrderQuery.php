@@ -9,6 +9,7 @@
 
 namespace FnacApiClient\Service\Request;
 
+use FnacApiClient\Service\Response\OrderQueryResponse;
 use FnacApiClient\Type\ProductStateType;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
@@ -22,7 +23,7 @@ class OrderQuery extends Query
 {
     const ROOT_NAME = "orders_query";
     const XSD_FILE = "OrdersQueryService.xsd";
-    const CLASS_RESPONSE = "FnacApiClient\Service\Response\OrderQueryResponse";
+    const CLASS_RESPONSE = OrderQueryResponse::class;
 
     private $sort_by_type = null;
     private $product_fnac_id = null;
@@ -32,17 +33,19 @@ class OrderQuery extends Query
     private $offer_seller_id = null;
 
 
-    public function __construct(array $orderQueryParameters = null)
+    public function __construct(array $parameters = null)
     {
-        if (!empty($orderQueryParameters)) {
-            $this->initParameters($orderQueryParameters);
+        parent::__construct($parameters);
+
+        if (!empty($parameters)) {
+            $this->initParameters($parameters);
         }
     }
 
     /**
      * {@inheritdoc}
      */
-    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = array())
+    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = [])
     {
         $data = parent::normalize($normalizer, $format);
 
@@ -56,16 +59,16 @@ class OrderQuery extends Query
 
         if (!is_null($this->orders_fnac_id)) {
             $data['orders_fnac_id'] = $this->orders_fnac_id;
-            $data['orders_fnac_id'] = array();
-            $data['orders_fnac_id']['order_fnac_id'] = array();
+            $data['orders_fnac_id'] = [];
+            $data['orders_fnac_id']['order_fnac_id'] = [];
             foreach ($this->orders_fnac_id as $order_fnac_id) {
                 $data['orders_fnac_id']['order_fnac_id'][] = $order_fnac_id;
             }
         }
 
         if (!is_null($this->states)) {
-            $data['states'] = array();
-            $data['states']['state'] = array();
+            $data['states'] = [];
+            $data['states']['state'] = [];
             foreach ($this->states as $state) {
                 $data['states']['state'][] = $state;
             }

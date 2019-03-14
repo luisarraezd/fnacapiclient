@@ -9,10 +9,9 @@
 
 namespace FnacApiClient\Service\Request;
 
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\SerializerInterface;
-
 use FnacApiClient\Entity\ProductReference;
+use FnacApiClient\Service\Response\PricingQueryResponse;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * PricingQuery Service's definition.
@@ -25,9 +24,13 @@ class PricingQuery extends Authentified
 {
     const ROOT_NAME = "pricing_query";
     const XSD_FILE = "PricingQueryService.xsd";
-    const CLASS_RESPONSE = "FnacApiClient\Service\Response\PricingQueryResponse";
+    const CLASS_RESPONSE = PricingQueryResponse::class;
 
+    /** @var \ArrayObject|ProductReference[] */
     private $product_reference = null;
+
+    /** @var string */
+    private $sellers;
 
     /**
      * {@inheritdoc}
@@ -42,7 +45,7 @@ class PricingQuery extends Authentified
     /**
      * {@inheritdoc}
      */
-    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = array())
+    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = [])
     {
         $data = parent::normalize($normalizer, $format);
 
@@ -50,7 +53,7 @@ class PricingQuery extends Authentified
             $data['@sellers'] = $this->sellers;
         }
 
-        $data['product_reference'] = array();
+        $data['product_reference'] = [];
 
         if ($this->product_reference->count() > 1) {
             foreach ($this->product_reference as $product_reference) {
@@ -66,7 +69,7 @@ class PricingQuery extends Authentified
     /**
      * Set seller's type
      *
-     * @see FnacApiClient\Type\SellerType
+     * @see \FnacApiClient\Type\SellerType
      *
      * @param string $sellers : Type of sellers (all, others)
      */
@@ -80,7 +83,7 @@ class PricingQuery extends Authentified
      *
      * @param ProductReference $product_reference : Product reference to query
      */
-    public function addProductReference($product_reference)
+    public function addProductReference(ProductReference $product_reference)
     {
         $this->product_reference[] = $product_reference;
     }

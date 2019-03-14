@@ -9,8 +9,8 @@
 
 namespace FnacApiClient\Service\Request;
 
+use FnacApiClient\Service\Response\ClientOrderCommentQueryResponse;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use FnacApiClient\Type\CompareType;
 
 /**
  * ClientOrderCommentQuery Service's definition.
@@ -18,13 +18,12 @@ use FnacApiClient\Type\CompareType;
  * @author     Fnac
  * @version    1.0.0
  */
-
 class ClientOrderCommentQuery extends Query
 {
 
     const ROOT_NAME = "client_order_comments_query";
     const XSD_FILE = "ClientOrderCommentsQueryService.xsd";
-    const CLASS_RESPONSE = "FnacApiClient\Service\Response\ClientOrderCommentQueryResponse";
+    const CLASS_RESPONSE = ClientOrderCommentQueryResponse::class;
 
     private $rate_type = "Equals";
     private $rate = null;
@@ -34,14 +33,14 @@ class ClientOrderCommentQuery extends Query
     /**
      * {@inheritdoc}
      */
-    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = array())
+    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = [])
     {
         $data = parent::normalize($normalizer, $format);
 
         if (!is_null($this->rate)) {
-            $data['rate'] = array(
+            $data['rate'] = [
                 '@mode' => $this->rate_type, '@value' => $this->rate
-            );
+            ];
         }
 
         if (!is_null($this->order_fnac_id)) {
@@ -68,7 +67,7 @@ class ClientOrderCommentQuery extends Query
     /**
      * Set rate comparison type filter
      *
-     * @see FnacApiClient\Type\CompareType
+     * @see \FnacApiClient\Type\CompareType
      *
      * @param string $rate_type : Rate comparison type
      */

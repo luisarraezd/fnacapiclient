@@ -9,9 +9,9 @@
 
 namespace FnacApiClient\Service\Request;
 
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-
 use FnacApiClient\Entity\Message;
+use FnacApiClient\Service\Response\MessageUpdateResponse;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * MessageUpdate Service's definition.
@@ -24,9 +24,9 @@ class MessageUpdate extends Authentified
 {
     const ROOT_NAME = "messages_update";
     const XSD_FILE = "MessagesUpdateService.xsd";
-    const CLASS_RESPONSE = "FnacApiClient\Service\Response\MessageUpdateResponse";
+    const CLASS_RESPONSE = MessageUpdateResponse::class;
 
-    private $messages = array();
+    private $messages = [];
 
     /**
      * {@inheritdoc}
@@ -41,11 +41,11 @@ class MessageUpdate extends Authentified
     /**
      * {@inheritdoc}
      */
-    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = array())
+    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = [])
     {
         $data = parent::normalize($normalizer, $format);
 
-        $data['message'] = array();
+        $data['message'] = [];
 
         if ($this->messages->count() > 1) {
             foreach ($this->messages as $message) {
