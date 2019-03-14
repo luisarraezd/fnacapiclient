@@ -19,6 +19,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
  */
 class OfferUpdateResponse extends ResponseService
 {
+    /** @var string */
     private $batch_id;
 
     /**
@@ -32,8 +33,6 @@ class OfferUpdateResponse extends ResponseService
     }
 
     /**
-     * Return the batch id of offer update
-     *
      * @return string
      */
     public function getBatchId()

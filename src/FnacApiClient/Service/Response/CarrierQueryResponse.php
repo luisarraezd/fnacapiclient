@@ -9,10 +9,8 @@
 
 namespace FnacApiClient\Service\Response;
 
-use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
-use Symfony\Component\Serializer\SerializerInterface;
-
 use FnacApiClient\Entity\Carrier;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 /**
  * BatchQueryResponse service base definition for batch query response
@@ -22,7 +20,8 @@ use FnacApiClient\Entity\Carrier;
  */
 class CarrierQueryResponse extends ResponseService
 {
-    private $carriers = array();
+    /** @var \ArrayObject|Carrier[] */
+    private $carriers;
 
     /**
      * {@inheritdoc}
@@ -40,11 +39,7 @@ class CarrierQueryResponse extends ResponseService
     }
 
     /**
-     * Carrier list
-     *
-     * @see FnacApiClient\Entity\Carrier
-     *
-     * @return ArrayObject<Carrier>
+     * @return \ArrayObject|Carrier[]
      */
     public function getCarriers()
     {

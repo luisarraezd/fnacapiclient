@@ -22,6 +22,7 @@ use FnacApiClient\Entity\ShopInvoice;
  */
 class ShopInvoiceQueryResponse extends QueryResponse
 {
+    /** @var \ArrayObject|ShopInvoice[] */
     private $shop_invoices = array();
 
     /**
@@ -30,9 +31,9 @@ class ShopInvoiceQueryResponse extends QueryResponse
     public function denormalize(DenormalizerInterface $denormalizer, $data, $format = null, array $context = array())
     {
         parent::denormalize($denormalizer, $data, $format);
-        
+
         $this->shop_invoices = new \ArrayObject();
-        
+
         if(!empty($data['shop_invoice'])) {
             foreach ($data['shop_invoice'] as $shop_invoice) {
                 $shopInvoiceObj = new ShopInvoice();
@@ -43,11 +44,7 @@ class ShopInvoiceQueryResponse extends QueryResponse
     }
 
     /**
-     * List of shops' invoices
-     *
-     * @see FnacApiClient\Entity\ShopInvoice
-     *
-     * @return ArrayObject<ShopInvoice>
+     * @return \ArrayObject|ShopInvoice[]
      */
     public function getShopInvoices()
     {

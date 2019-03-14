@@ -20,6 +20,7 @@ use FnacApiClient\Entity\OrderUpdate;
  */
 class OrderUpdateResponse extends ResponseService
 {
+    /** @var \ArrayObject|OrderUpdate[] */
     private $orders_update;
 
     /**
@@ -47,11 +48,7 @@ class OrderUpdateResponse extends ResponseService
     }
 
     /**
-     * Return the list of order updated
-     *
-     * @see FnacApiClient\Entity\OrderUpdate
-     *
-     * @return ArrayObject<OrderUpdate>
+     * @return \ArrayObject|OrderUpdate[]
      */
     public function getOrdersUpdate()
     {

@@ -9,10 +9,8 @@
 
 namespace FnacApiClient\Service\Response;
 
-use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
-use Symfony\Component\Serializer\SerializerInterface;
-
 use FnacApiClient\Entity\MessageUpdate;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 /**
  * MessageUpdateResponse service base definition for message update response
@@ -22,6 +20,7 @@ use FnacApiClient\Entity\MessageUpdate;
  */
 class MessageUpdateResponse extends ResponseService
 {
+    /** @var \ArrayObject|MessageUpdate[] */
     private $messages;
 
     /**
@@ -49,11 +48,7 @@ class MessageUpdateResponse extends ResponseService
     }
 
     /**
-     * Message updated list
-     *
-     * @see FnacApiClient\Entity\MessageUpdate
-     *
-     * @return ArrayObject<MessageUpdate>
+     * @return \ArrayObject|MessageUpdate[]
      */
     public function getMessagesUpdates()
     {

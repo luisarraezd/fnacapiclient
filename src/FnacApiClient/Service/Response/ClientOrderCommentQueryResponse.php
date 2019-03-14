@@ -9,10 +9,8 @@
 
 namespace FnacApiClient\Service\Response;
 
-use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
-use Symfony\Component\Serializer\SerializerInterface;
-
 use FnacApiClient\Entity\ClientOrderComment;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 /**
  * ClientOrderCommentQueryResponse service base definition for client order comment query response
@@ -22,7 +20,8 @@ use FnacApiClient\Entity\ClientOrderComment;
  */
 class ClientOrderCommentQueryResponse extends QueryResponse
 {
-    private $client_order_comments = array();
+    /** @var \ArrayObject|ClientOrderComment[] */
+    private $client_order_comments;
 
     /**
      * {@inheritdoc}
@@ -49,11 +48,7 @@ class ClientOrderCommentQueryResponse extends QueryResponse
     }
 
     /**
-     * Client order comment list
-     *
-     * @see FnacApiClient\Entity\ClientOrderComment;
-     *
-     * @return ArrayObject<ClientOrderComment>
+     * @return \ArrayObject|ClientOrderComment[]
      */
     public function getClientOrderComments()
     {

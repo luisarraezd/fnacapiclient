@@ -21,6 +21,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
  */
 abstract class ResponseService extends AbstractService
 {
+    /** @var string */
     private $status = null;
 
     /**
@@ -28,7 +29,7 @@ abstract class ResponseService extends AbstractService
      */
     final public function normalize(NormalizerInterface $normalizer, $format = null, array $context = array())
     {
-        throw new BadMethodCallException("Can't normalize a Response Service");
+        throw new \BadMethodCallException("Can't normalize a Response Service");
     }
 
     public function denormalize(DenormalizerInterface $denormalizer, $data, $format = null, array $context = array())
@@ -39,7 +40,7 @@ abstract class ResponseService extends AbstractService
     /**
      * Return the status of response
      *
-     * @see FnacApiClient\Type\ResponseStatusType
+     * @see \FnacApiClient\Type\ResponseStatusType
      *
      * @return string
      */

@@ -9,10 +9,8 @@
 
 namespace FnacApiClient\Service\Response;
 
-use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
-use Symfony\Component\Serializer\SerializerInterface;
-
 use FnacApiClient\Entity\Comment;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 /**
  * ClientOrderCommentUpdateResponse service base definition for client order comment update response
@@ -22,6 +20,7 @@ use FnacApiClient\Entity\Comment;
  */
 class ClientOrderCommentUpdateResponse extends ResponseService
 {
+    /** @var \ArrayObject|Comment[] */
     private $comments;
 
     /**
@@ -49,11 +48,7 @@ class ClientOrderCommentUpdateResponse extends ResponseService
     }
 
     /**
-     * List of comment updated
-     *
-     * @see FnacApiClient\Entity\Comment
-     *
-     * @return ArrayObject<Comment>
+     * @return \ArrayObject|Comment[]
      */
     public function getComments()
     {

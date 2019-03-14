@@ -9,9 +9,8 @@
 
 namespace FnacApiClient\Service\Response;
 
-use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
-
 use FnacApiClient\Entity\Message;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 /**
  * MessageQueryResponse service base definition for response when using message query.
@@ -21,8 +20,13 @@ use FnacApiClient\Entity\Message;
  */
 class MessageQueryResponse extends QueryResponse
 {
+    /** @var \ArrayObject|Message[] */
     private $messages;
+
+    /** @var int */
     private $messages_unread_result;
+
+    /** @var int */
     private $messages_read_result;
 
     /**
@@ -53,11 +57,7 @@ class MessageQueryResponse extends QueryResponse
     }
 
     /**
-     * Message list
-     *
-     * @see FnacApiClient\Entity\Message
-     *
-     * @return Array<Message>
+     * @return \ArrayObject|Message[]
      */
     public function getMessages()
     {
@@ -67,7 +67,7 @@ class MessageQueryResponse extends QueryResponse
     /**
      * Number of messages unread
      *
-     * @return integer
+     * @return int
      */
     public function getMessagesUnreadResult()
     {
@@ -77,7 +77,7 @@ class MessageQueryResponse extends QueryResponse
     /**
      * Number of messages read
      *
-     * @return integer
+     * @return int
      */
     public function getMessagesReadResult()
     {

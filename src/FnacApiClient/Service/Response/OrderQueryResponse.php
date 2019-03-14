@@ -22,6 +22,7 @@ use FnacApiClient\Entity\Order;
  */
 class OrderQueryResponse extends QueryResponse
 {
+    /** @var \ArrayObject|Order[] */
     private $orders = array();
 
     /**
@@ -49,11 +50,7 @@ class OrderQueryResponse extends QueryResponse
     }
 
     /**
-     * Order list
-     *
-     * @see FnacApiClient\Entity\Order
-     *
-     * @return ArrayObject<Order>
+     * @return \ArrayObject|Order[]
      */
     public function getOrders()
     {

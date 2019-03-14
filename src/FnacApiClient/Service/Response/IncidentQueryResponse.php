@@ -9,9 +9,8 @@
 
 namespace FnacApiClient\Service\Response;
 
-use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
-
 use FnacApiClient\Entity\Incident;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 /**
  * IncidentQueryResponse service base definition for incident query response
@@ -21,6 +20,7 @@ use FnacApiClient\Entity\Incident;
  */
 class IncidentQueryResponse extends ResponseService
 {
+    /** @var \ArrayObject|Incident[] */
     private $incidents;
 
     /**
@@ -47,24 +47,10 @@ class IncidentQueryResponse extends ResponseService
     }
 
     /**
-     * Incident list
-     *
-     * @see FnacApiClient\Entity\Incident
-     *
-     * @return ArrayObject<Incident>
+     * @return \ArrayObject|Incident[]
      */
     public function getIncidents()
     {
         return $this->incidents;
-    }
-
-    /**
-     * Incident's unique identifier given by fnac
-     *
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 }

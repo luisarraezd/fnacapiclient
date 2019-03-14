@@ -9,9 +9,8 @@
 
 namespace FnacApiClient\Service\Response;
 
-use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
-
 use FnacApiClient\Entity\IncidentOrderUpdate;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 /**
  * IncidentUpdateResponse service base definition for incident update response
@@ -21,6 +20,7 @@ use FnacApiClient\Entity\IncidentOrderUpdate;
  */
 class IncidentUpdateResponse extends ResponseService
 {
+    /** @var \ArrayObject|IncidentOrderUpdate[] */
     private $orders;
 
     /**
@@ -48,11 +48,7 @@ class IncidentUpdateResponse extends ResponseService
     }
 
     /**
-     * Order updated list
-     *
-     * @see FnacApiClient\Entity\IncidentOrderUpdate
-     *
-     * @return ArrayObject<IncidentOrderUpdate>
+     * @return \ArrayObject|IncidentOrderUpdate[]
      */
     public function getOrdersUpdates()
     {

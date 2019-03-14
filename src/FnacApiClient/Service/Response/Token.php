@@ -20,8 +20,11 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
  */
 class Token extends ResponseService
 {
-    private $token = "";
-    private $validity = "";
+    /** @var string */
+    private $token;
+
+    /** @var int */
+    private $validity;
 
     /**
      * {@inheritdoc}
@@ -49,7 +52,7 @@ class Token extends ResponseService
     /**
      * Token expiration date
      *
-     * @return integer Unix Timestamp
+     * @return int Unix Timestamp
      */
     public function getValidity()
     {
@@ -57,18 +60,16 @@ class Token extends ResponseService
     }
 
     /**
-     * Is token still valid ?
-     *
-     * @return boolean
+     * @return bool
      */
     public function isValid()
     {
         $local_time_zone = date_default_timezone_get();
-        
+
         ini_set("date.timezone", "UTC"); // force timezone to UTC for token validity to be timezone independent
         $isValid = (bool) (time() < $this->getValidity());
         ini_set("date.timezone", $local_time_zone);
-        
+
         return $isValid;
     }
 }

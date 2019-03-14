@@ -10,7 +10,6 @@
 namespace FnacApiClient\Service\Response;
 
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
-use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * QueryResponse service base definition for query response
@@ -20,9 +19,16 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 abstract class QueryResponse extends ResponseService
 {
+    /** @var int */
     private $page;
+
+    /** @var int */
     private $total_paging;
+
+    /** @var int */
     private $nb_total_per_page;
+
+    /** @var int */
     private $nb_total_result;
 
     /**
@@ -41,7 +47,7 @@ abstract class QueryResponse extends ResponseService
     /**
      * Page number
      *
-     * @return integer
+     * @return int
      */
     public function getPage()
     {
@@ -51,7 +57,7 @@ abstract class QueryResponse extends ResponseService
     /**
      * Number of page available
      *
-     * @return integer
+     * @return int
      */
     public function getTotalPaging()
     {
@@ -61,7 +67,7 @@ abstract class QueryResponse extends ResponseService
     /**
      * Number of result per page
      *
-     * @return integer
+     * @return int
      */
     public function getNbTotalPerPage()
     {
@@ -71,7 +77,7 @@ abstract class QueryResponse extends ResponseService
     /**
      * Number of result
      *
-     * @return integer
+     * @return int
      */
     public function getNbTotalResult()
     {
@@ -81,7 +87,7 @@ abstract class QueryResponse extends ResponseService
     /**
      * Is the query have other result to be fetched ?
      *
-     * @return boolean
+     * @return bool
      */
     public function hasNextPage()
     {
