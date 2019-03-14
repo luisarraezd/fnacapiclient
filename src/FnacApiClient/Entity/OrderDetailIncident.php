@@ -11,8 +11,6 @@ namespace FnacApiClient\Entity;
 
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\Serializer\Normalizer\NormalizableInterface;
 
 /**
  * OrderDetailIncident definition.
@@ -23,12 +21,17 @@ use Symfony\Component\Serializer\Normalizer\NormalizableInterface;
 
 class OrderDetailIncident extends Entity
 {
+    /** @var int */
     private $type;
+
+    /** @var int */
     private $status;
+
     private $created_at;
     private $updated_at;
 
-    private $refunds = array();
+    /** @var \ArrayObject|Refund[] */
+    private $refunds;
 
     /**
      * {@inheritDoc}
@@ -96,7 +99,7 @@ class OrderDetailIncident extends Entity
     }
 
     /**
-     * @return ArrayObject<Refund>
+     * @return \ArrayObject|Refund[]
      */
     public function getRefunds()
     {

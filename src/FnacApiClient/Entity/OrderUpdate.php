@@ -21,11 +21,18 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class OrderUpdate extends Entity
 {
-    private $status;
+    /** @var string */
     private $order_id;
+
+    /** @var string */
+    private $status;
+
     private $state;
 
+    /** @var \ArrayObject|Error[] */
     private $errors;
+
+    /** @var \ArrayObject|OrderDetailUpdate[] */
     private $orders_detail;
 
     /**
@@ -91,7 +98,7 @@ class OrderUpdate extends Entity
     /**
      * Order update status
      *
-     * @see FnacApiClient\Type\ResponseStatusType
+     * @see \FnacApiClient\Type\ResponseStatusType
      *
      * @return string
      */
@@ -101,11 +108,7 @@ class OrderUpdate extends Entity
     }
 
     /**
-     * Errors list happen during update
-     *
-     * @see Error
-     *
-     * @return ArrayObject<Error>
+     * @return \ArrayObject|Error[]
      */
     public function getErrors()
     {
@@ -115,7 +118,7 @@ class OrderUpdate extends Entity
     /**
      * Order details update associate to this order
      *
-     * @return ArrayObject<OrderDetailUpdate>
+     * @return \ArrayObject|OrderDetailUpdate[]
      */
     public function getOrdersDetail()
     {

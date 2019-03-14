@@ -11,7 +11,6 @@ namespace FnacApiClient\Entity;
 
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * Order definition.
@@ -22,24 +21,54 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class Order extends Entity
 {
+    /** @var string **/
     private $order_id;
+
+    /** @var string **/
     private $order_action;
+
+    /** @var \ArrayObject|OrderDetail[] */
     private $orders_detail;
 
+    /** @var string **/
     private $shop_id;
+
+    /** @var string **/
     private $client_id;
+
+    /** @var string **/
     private $client_firstname;
+
+    /** @var string **/
     private $client_lastname;
+
+    /** @var string **/
     private $client_email;
+
+    /** @var string **/
     private $state;
+
     private $created_at;
-    private $accepted_at;
+
+    /** @var float **/
     private $fees;
+
+    /** @var int **/
     private $nb_messages;
+
+    /** @var string **/
     private $delivery_note;
+
+    /** @var Address **/
     private $shipping_address;
+
+    /** @var Address **/
     private $billing_address;
+
+    /** @var string **/
     private $adherent_number;
+
+    /** @var string **/
     private $order_culture;
 
     /**
@@ -73,7 +102,7 @@ class Order extends Entity
     /**
      * Set Group action type for order detail action
      *
-     * @see FnacApiClient\Type\OrderActionType
+     * @see \FnacApiClient\Type\OrderActionType
      *
      * @param string $order_action : Action to do on this order
      */
@@ -95,7 +124,7 @@ class Order extends Entity
     /**
      * Get list of orders detail
      *
-     * @return ArrayObject<OrderDetail>
+     * @return \ArrayObject|OrderDetail[]
      */
     public function getOrdersDetail()
     {
@@ -245,7 +274,7 @@ class Order extends Entity
     /**
      * Order's state
      *
-     * @see FnacApiClient\Type\OrderStateType
+     * @see \FnacApiClient\Type\OrderStateType
      *
      * @return string
      */

@@ -11,7 +11,6 @@ namespace FnacApiClient\Entity;
 
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * OrderDetail definition.
@@ -22,32 +21,65 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class OrderDetail extends Entity
 {
-    /** Send Var **/
+    /** @var string **/
     private $action = null;
+
+    /** @var string **/
     private $tracking_company = null;
 
-    /** Get Var **/
+    /** @var string **/
     private $product_name = null;
+
+    /** @var string **/
     private $state = null;
+
+    /** @var int **/
     private $quantity = null;
+
+    /** @var float **/
     private $price = null;
+
+    /** @var float **/
     private $fees = null;
+
+    /** @var string **/
     private $product_fnac_id = null;
+
+    /** @var string **/
     private $offer_fnac_id = null;
+
+    /** @var string **/
     private $offer_seller_id = null;
+
+    /** @var int **/
     private $product_state = null;
+
+    /** @var string **/
     private $description = null;
+
+    /** @var string **/
     private $internal_comment = null;
+
+    /** @var float **/
     private $shipping_price = null;
+
+    /** @var string **/
     private $shipping_method = null;
+
     private $created_at = null;
     private $debited_at = null;
     private $received_at = null;
+
+    /** @var string **/
     private $product_url = null;
+
+    /** @var string **/
     private $image = null;
 
-    /** Both **/
+    /** @var string **/
     private $order_detail_id;
+
+    /** @var string **/
     private $tracking_number;
 
     /**
@@ -58,7 +90,7 @@ class OrderDetail extends Entity
         $data = array(
             'action' => $this->action
         );
-        
+
         if (!is_null($this->order_detail_id)) {
             $data['order_detail_id'] = $this->order_detail_id;
         }
@@ -114,7 +146,7 @@ class OrderDetail extends Entity
     /**
      * Order detail state
      *
-     * @see FnacApiClient\Type\OrderDetailStateType
+     * @see \FnacApiClient\Type\OrderDetailStateType
      *
      * @return string
      */
@@ -176,19 +208,19 @@ class OrderDetail extends Entity
     /**
      * Product's state
      *
-     * @see FnacApiClient\Type\ProductStateType
+     * @see \FnacApiClient\Type\ProductStateType
      *
-     * @return integer
+     * @return int
      */
     public function getProductState()
     {
         return $this->product_state;
     }
-    
+
     /**
      * Product state label
      *
-     * @see FnacApiClient\Type\ProductStateType
+     * @see \FnacApiClient\Type\ProductStateType
      *
      * @return string
      */
@@ -220,7 +252,7 @@ class OrderDetail extends Entity
     /**
      * Product's quantity ordered
      *
-     * @return integer
+     * @return int
      */
     public function getQuantity()
     {
@@ -330,7 +362,7 @@ class OrderDetail extends Entity
     /**
      * Set the specific action to do on this order detail depdending on order action group
      *
-     * @see FnacApiClient\Type\OrderDetailActionType
+     * @see \FnacApiClient\Type\OrderDetailActionType
      *
      * @param string $action : Action to do on this order detail
      */
