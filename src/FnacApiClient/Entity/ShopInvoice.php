@@ -22,8 +22,12 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class ShopInvoice extends Entity
 {
+    /** @var string */
     private $invoice_id;
+
+    /** @var string */
     private $url;
+
     private $created_at;
 
     /**

@@ -21,9 +21,15 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class Batch extends Entity
 {
+    /** @var string */
     private $status;
+
+    /** @var int */
     private $nb_lines;
+
+    /** @var string */
     private $batch_id;
+
     private $created_at;
 
     /**
@@ -48,7 +54,7 @@ class Batch extends Entity
     /**
      * Get the batch status
      *
-     * @see FnacApiClient\Type\ResponseStatusType
+     * @see \FnacApiClient\Type\ResponseStatusType
      *
      * @return string
      */

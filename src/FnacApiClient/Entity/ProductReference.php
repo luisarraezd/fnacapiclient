@@ -22,7 +22,10 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class ProductReference extends Entity
 {
+    /** @var string */
     private $type;
+
+    /** @var string */
     private $value;
 
     /**
@@ -47,7 +50,7 @@ class ProductReference extends Entity
     /**
      * Set product reference type
      *
-     * @see FnacApiClient\Type\ProductType
+     * @see \FnacApiClient\Type\ProductType
      *
      * @param string $type : Type of reference
      */
@@ -65,13 +68,9 @@ class ProductReference extends Entity
     {
         $this->value = $value;
     }
-    
+
     /**
-     * Get product reference type
-     *
-     * @see FnacApiClient\Type\ProductType
-     *
-     * @param string $type : Type of reference
+     * @return string
      */
     public function getType()
     {
@@ -79,9 +78,7 @@ class ProductReference extends Entity
     }
 
     /**
-     * Get product reference value
-     *
-     * @param string $value : Value of reference
+     * @return string
      */
     public function getValue()
     {

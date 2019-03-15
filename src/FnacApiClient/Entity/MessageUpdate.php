@@ -23,10 +23,13 @@ use Symfony\Component\Serializer\Normalizer\NormalizableInterface;
 
 class MessageUpdate extends Entity
 {
-
-    /** Get Var **/
+    /** @var string */
     private $status;
+
+    /** @var \ArrayObject|Error[] */
     private $errors;
+
+    /** @var string */
     private $id;
 
     /**
@@ -75,7 +78,7 @@ class MessageUpdate extends Entity
     /**
      * Status of update
      *
-     * @see FnacApiClient\Type\ResponseStatusType
+     * @see \FnacApiClient\Type\ResponseStatusType
      *
      * @return string
      */
@@ -85,11 +88,7 @@ class MessageUpdate extends Entity
     }
 
     /**
-     * Errors that happens during update
-     *
-     * @see Error
-     *
-     * @return ArrayObject<Error>
+     * @return \ArrayObject|Error[]
      */
     public function getErrors()
     {

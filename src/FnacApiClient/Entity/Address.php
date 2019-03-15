@@ -21,16 +21,37 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class Address extends Entity
 {
+    /** @var string */
     private $firstname;
+
+    /** @var string */
     private $lastname;
+
+    /** @var string */
     private $company;
+
+    /** @var string */
     private $address1;
+
+    /** @var string */
     private $address2;
+
+    /** @var string */
     private $address3;
+
+    /** @var string */
     private $zipcode;
+
+    /** @var string */
     private $city;
+
+    /** @var string */
     private $country;
+
+    /** @var string */
     private $phone;
+
+    /** @var string */
     private $mobile;
 
     /**

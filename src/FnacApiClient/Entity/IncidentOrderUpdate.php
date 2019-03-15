@@ -21,14 +21,25 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class IncidentOrderUpdate extends Entity
 {
-
-    /** Get Var **/
+    /** @var string */
     private $status;
+
+    /** @var string */
     private $incident_id;
+
+    /** @var string */
     private $incident_status;
+
+    /** @var string */
     private $order_id;
+
+    /** @var string */
     private $state;
+
+    /** @var \ArrayObject|IncidentOrderDetailUpdate[] */
     private $order_details;
+
+    /** @var \ArrayObject|Error[] */
     private $errors;
 
     /**
@@ -117,7 +128,7 @@ class IncidentOrderUpdate extends Entity
     /**
      * Incident's status
      *
-     * @see FnacApiClient\Type\StatusType
+     * @see \FnacApiClient\Type\StatusType
      * @return string
      */
     public function getIncidentStatus()
@@ -128,7 +139,7 @@ class IncidentOrderUpdate extends Entity
     /**
      * Status of update
      *
-     * @see FnacApiClient\Type\ResponseStatusType
+     * @see \FnacApiClient\Type\ResponseStatusType
      *
      * @return string
      */
@@ -138,9 +149,7 @@ class IncidentOrderUpdate extends Entity
     }
 
     /**
-     * Incident's State
-     *
-     * @see FnacApiClient\Type\OrderStateType
+     * @see \FnacApiClient\Type\OrderStateType
      *
      * @return string
      */
@@ -150,11 +159,7 @@ class IncidentOrderUpdate extends Entity
     }
 
     /**
-     * Errors that happens during update
-     *
-     * @see FnacApiClient\Entity\IncidentOrderDetailUpdate
-     *
-     * @return ArrayObject<IncidentOrderDetailUpdate>
+     * @return \ArrayObject|IncidentOrderDetailUpdate[]
      */
     public function getOrderDetails()
     {
@@ -162,11 +167,7 @@ class IncidentOrderUpdate extends Entity
     }
 
     /**
-     * Errors that happens during update
-     *
-     * @see Error
-     *
-     * @return ArrayObject<Error>
+     * @return \ArrayObject|Error[]
      */
     public function getErrors()
     {

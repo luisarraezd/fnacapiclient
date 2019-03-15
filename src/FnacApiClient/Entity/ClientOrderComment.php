@@ -21,16 +21,36 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class ClientOrderComment extends Entity
 {
+    /** @var int */
     private $rate;
+
+    /** @var string */
     private $order_fnac_id;
+
+    /** @var string */
     private $client_order_comment_id;
+
+    /** @var string */
     private $client_name;
+
+    /** @var string */
     private $comment;
+
+    /** @var string */
     private $reply;
+
+    /** @var bool */
     private $is_received;
+
+    /** @var bool */
     private $is_fast;
+
+    /** @var bool */
     private $is_well_packed;
+
+    /** @var bool */
     private $is_good_shape;
+
     private $created_at;
 
     /**

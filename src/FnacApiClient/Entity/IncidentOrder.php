@@ -26,13 +26,19 @@ use FnacApiClient\Type\IncidentUpdateActionType;
 
 class IncidentOrder extends Entity
 {
-
-    /** Get Var **/
+    /** @var string */
     private $incident_id;
+
+    /** @var string */
     private $order_id;
+
+    /** @var string */
     private $action;
+
+    /** @var \ArrayObject|IncidentOrderDetail[] */
     private $orders_details_incident;
 
+    /** @var \ArrayObject|Error[] */
     private $errors;
 
     /**
@@ -110,7 +116,7 @@ class IncidentOrder extends Entity
     /**
      * Set action to do on incident
      *
-     * @see FnacApiClient\Type\IncidentUpdateActionType
+     * @see \FnacApiClient\Type\IncidentUpdateActionType
      *
      * @param string $action : Action to do on order
      */
@@ -122,7 +128,7 @@ class IncidentOrder extends Entity
     /**
      * Add an orderDetail assocaited to an order
      *
-     * @see FnacApiClient\Entity\IncidentOrderDetail
+     * @see \FnacApiClient\Entity\IncidentOrderDetail
      *
      * @param IncidentOrderDetail $order_detail : OrderDetail request for Incident
      */
@@ -134,7 +140,7 @@ class IncidentOrder extends Entity
     /**
      * Add an orderDetail assocaited to an order
      *
-     * @param ArrayObject $order_details : IncidentOrderDetails request for Incident
+     * @param \ArrayObject $order_details : IncidentOrderDetails request for Incident
      */
     public function addOrderDetails(\ArrayObject $order_details)
     {
@@ -146,9 +152,7 @@ class IncidentOrder extends Entity
     }
 
     /**
-     * Order details update associate to this order
-     *
-     * @return ArrayObject<IncidentOrderDetail>
+     * @return \ArrayObject|IncidentOrderDetail[]
      */
     public function getOrdersDetail()
     {
@@ -156,11 +160,7 @@ class IncidentOrder extends Entity
     }
 
     /**
-     * Errors that happens during update
-     *
-     * @see Error
-     *
-     * @return ArrayObject<Error>
+     * @return \ArrayObject|Error[]
      */
     public function getErrors()
     {

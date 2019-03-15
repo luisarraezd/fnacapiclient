@@ -20,8 +20,13 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class AdherentPricing extends Entity
 {
+    /** @var string */
     private $seller_offer_price;
+
+    /** @var float */
     private $seller_offer_shipping_price;
+
+    /** @var \ArrayObject|RankedOffer[] */
     private $ranked_offers;
 
     /**
@@ -39,9 +44,9 @@ class AdherentPricing extends Entity
     {
         $this->seller_offer_price = isset($data['seller_offer']['price']) ? $data['seller_offer']['price'] : "";
         $this->seller_offer_shipping_price = isset($data['seller_offer']['shipping_price']) ? $data['seller_offer']['shipping_price'] : "";
-        
+
         $this->ranked_offers = new \ArrayObject();
-        
+
         if (isset($data['ranked_offers'][0])) {
             foreach ($data['ranked_offers'] as $ranked_offer) {
                 $tmpObj = new RankedOffer();
@@ -74,10 +79,12 @@ class AdherentPricing extends Entity
     {
         return $this->seller_offer_shipping_price;
     }
-    
+
+    /**
+     * @return \ArrayObject|RankedOffer[]
+     */
     public function getRankedOffers()
     {
         return $this->ranked_offers;
     }
-
 }

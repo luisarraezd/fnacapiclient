@@ -22,17 +22,39 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class RankedOffer extends Entity
 {
+    /** @var string */
     private $seller_name;
+
+    /** @var string */
     private $type;
+
+    /** @var string */
     private $seller_url;
+
+    /** @var int */
     private $seller_sales_number;
+
+    /** @var float */
     private $seller_reliability_rate;
+
+    /** @var string */
     private $seller_expedition_country;
+
+    /** @var bool */
     private $has_buy_box;
+
+    /** @var int */
     private $offer_status;
+
+    /** @var int */
     private $position;
+
+    /** @var float */
     private $price;
+
+    /** @var float */
     private $shipping_price;
+
     private $updated_at;
 
     /**
@@ -53,7 +75,6 @@ class RankedOffer extends Entity
         $this->seller_url = $data['seller_url'];
         $this->seller_sales_number = $data['seller_sales_number'];
         $this->seller_reliability_rate = $data['seller_reliability_rate'];
-        $this->seller_expedition_country = $data['seller_expedition_country'];
         $this->seller_expedition_country = $data['seller_expedition_country'];
         $this->has_buy_box = $data['has_buy_box'];
         $this->offer_status = $data['offer_status'];
@@ -76,7 +97,7 @@ class RankedOffer extends Entity
     /**
      * Product seller type
      *
-     * @see FnacApiClient\Type\SellerType
+     * @see \FnacApiClient\Type\SellerType
      *
      * @return string
      */
@@ -138,7 +159,7 @@ class RankedOffer extends Entity
     /**
      * Product state type for this pricing
      *
-     * @see FnacApiClient\Type\ProductStateType
+     * @see \FnacApiClient\Type\ProductStateType
      *
      * @return integer
      */

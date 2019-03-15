@@ -21,8 +21,13 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class Carrier extends Entity
 {
+    /** @var string */
     private $name;
+
+    /** @var string */
     private $code;
+
+    /** @var bool */
     private $is_global;
 
     /**

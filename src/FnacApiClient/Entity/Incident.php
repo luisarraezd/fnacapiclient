@@ -22,19 +22,36 @@ use Symfony\Component\Serializer\Normalizer\NormalizableInterface;
  */
 class Incident extends Entity
 {
+    /** @var string */
     private $status;
+
+    /** @var string */
     private $waiting_for_seller_answer;
+
+    /** @var string */
     private $message;
+
+    /** @var string */
     private $opened_by;
+
+    /** @var string */
     private $closed_by;
+
+    /** @var string */
     private $closed_status;
+
     private $closed_at;
     private $created_at;
     private $updated_at;
+
+    /** @var string */
     private $order_id;
+
+    /** @var string */
     private $id;
 
-    private $order_details_incident = array();
+    /** @var \ArrayObject|OrderDetailIncident[] */
+    private $order_details_incident;
 
     /**
      * {@inheritDoc}
@@ -180,7 +197,7 @@ class Incident extends Entity
     }
 
     /**
-     * @return ArrayObject<OrderDetailIncident>
+     * @return \ArrayObject|OrderDetailIncident[]
      */
     public function getOrderDetailsIncident()
     {

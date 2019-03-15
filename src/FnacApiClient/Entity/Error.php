@@ -20,8 +20,13 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
  */
 class Error extends Entity
 {
+    /** @var string */
     private $severity;
+
+    /** @var string */
     private $code;
+
+    /** @var string */
     private $message;
 
     /**

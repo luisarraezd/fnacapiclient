@@ -21,14 +21,16 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class Comment extends Entity
 {
-    /** Send Var **/
+    /** @var string */
     private $reply;
 
-    /** Get Var **/
+    /** @var string */
     private $status;
+
+    /** @var \ArrayObject|Error[] */
     private $errors;
 
-    /** Both **/
+    /** @var string */
     private $id;
 
     /**
@@ -107,9 +109,7 @@ class Comment extends Entity
     }
 
     /**
-     * Return a list of error
-     *
-     * @return ArrayObject<Error>
+     * @return \ArrayObject|Error[]
      */
     public function getErrors()
     {

@@ -22,9 +22,15 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class Refund extends Entity
 {
+    /** @var float */
     private $product_amount;
+
+    /** @var float */
     private $shipping_amount;
+
+    /** @var float */
     private $fee_ht_amount;
+
     private $created_at;
 
     /**

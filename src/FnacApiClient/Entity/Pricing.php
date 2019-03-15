@@ -21,13 +21,28 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class Pricing extends Entity
 {
+    /** @var string */
     private $seller;
+
+    /** @var float */
     private $price;
+
+    /** @var float */
     private $shipping_price;
+
+    /** @var int */
     private $offer_status;
+
+    /** @var string */
     private $seller_url;
+
+    /** @var string */
     private $type;
+
+    /** @var int */
     private $evaluation;
+
+    /** @var int */
     private $nb_orders;
 
     /**
@@ -86,7 +101,7 @@ class Pricing extends Entity
     /**
      * Product state type for this pricing
      *
-     * @see FnacApiClient\Type\ProductStateType
+     * @see \FnacApiClient\Type\ProductStateType
      *
      * @return integer
      */
@@ -128,7 +143,7 @@ class Pricing extends Entity
     /**
      * Product seller type
      *
-     * @see FnacApiClient\Type\SellerType
+     * @see \FnacApiClient\Type\SellerType
      *
      * @return string
      */

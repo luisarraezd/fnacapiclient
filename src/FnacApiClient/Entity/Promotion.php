@@ -22,21 +22,34 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class Promotion extends Entity
 {
-    /** Send Var **/
-
-    /** Get Var **/
-
-    /** Both **/
+    /** @var string */
     private $promotion_type;
+
+    /** @var string */
     private $promotion_uid;
+
     private $starts_at;
     private $ends_at;
+
+    /** @var string */
     private $discount_type;
+
+    /** @var string */
     private $discount_value;
+
+    /** @var string */
     private $triggers;
+
+    /** @var string */
     private $trigger_cart_type;
+
+    /** @var string */
     private $trigger_cart;
+
+    /** @var string */
     private $trigger_promotion_code;
+
+    /** @var string */
     private $trigger_customer_type;
 
     /**
@@ -45,43 +58,39 @@ class Promotion extends Entity
     public function normalize(NormalizerInterface $normalizer, $format = null, array $context = array())
     {
         $data['@type'] = $this->promotion_type;
-        
-        if(!is_null($this->sales_period_reference)) {
-            $data['sales_period_reference'] = $this->sales_period_reference;
-        }
-        
+
         if(!is_null($this->promotion_uid)) {
              $data['promotion_uid'] = $this->promotion_uid;
         }
 
         $data['starts_at'] = $this->starts_at;
         $data['ends_at'] = $this->ends_at;
-        
+
         if (!is_null($this->discount_type)) {
             $data['discount_type'] = $this->discount_type;
         }
-        
+
         if (!is_null($this->discount_value)) {
             $data['discount_value'] = $this->discount_value;
         }
 
         if(!is_null($this->trigger_cart)) {
-            
+
             $data['triggers'] = array();
-            
+
             $data['triggers']['trigger_cart'] = array(
                 '@type' => $this->trigger_cart_type, '#' => $this->trigger_cart
              );
-            
+
             if($this->trigger_promotion_code) {
                 $data['triggers']['trigger_promotion_code'] = $this->trigger_promotion_code;
             }
-            
+
             if($this->trigger_customer_type) {
                 $data['triggers']['trigger_customer_type'] = $this->trigger_customer_type;
             }
         }
-        
+
         return $data;
     }
 
@@ -92,7 +101,7 @@ class Promotion extends Entity
     {
         $this->promotion_type = $data['@type'];
         $this->promotion_uid = $data['promotion_uid'];
-        $this->start_at = $data['start_at'];
+        $this->starts_at = $data['start_at'];
         $this->ends_at = $data['ends_at'];
         $this->discount_type = $data['discount_type'];
         $this->discount_value = $data['discount_value'];
@@ -212,7 +221,7 @@ class Promotion extends Entity
         $this->ends_at = $ends_at;
     }
 
-     
+
     public function setDiscountType($discount_type)
     {
         $this->discount_type = $discount_type;
@@ -222,7 +231,7 @@ class Promotion extends Entity
     {
         $this->discount_value = $discount_value;
     }
-    
+
     /**
      * Trigger cart type
      *
@@ -304,13 +313,11 @@ class Promotion extends Entity
     }
 
     /**
-     * Set promotion triggers settings
-     *
-     * @return string
+     * @param string $triggers
      */
     public function setTriggers($triggers)
     {
         $this->triggers = $triggers;
     }
-    
+
 }

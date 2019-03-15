@@ -23,11 +23,19 @@ use Symfony\Component\Serializer\Normalizer\NormalizableInterface;
 
 class OfferUpdate extends Entity
 {
-    /** Get Var **/
+    /** @var string */
     private $status;
+
+    /** @var \ArrayObject|Error[] */
     private $errors;
+
+    /** @var string */
     private $product_fnac_id;
+
+    /** @var string */
     private $offer_fnac_id;
+
+    /** @var string */
     private $offer_seller_id;
 
     /**
@@ -99,7 +107,7 @@ class OfferUpdate extends Entity
     /**
      * Status of offer update
      *
-     * @see FnacApiClient\Type\ResponseStatusType
+     * @see \FnacApiClient\Type\ResponseStatusType
      *
      * @return string
      */
@@ -109,11 +117,7 @@ class OfferUpdate extends Entity
     }
 
     /**
-     * Errors list when updating offer
-     *
-     * @see Error
-     *
-     * @return ArrayObject<Error>
+     * @return \ArrayObject|Error[]
      */
     public function getErrors()
     {

@@ -24,35 +24,7 @@ use FnacApiClient\Type\ProductType;
 
 class Offer extends Entity
 {
-    /** Send variable **/
-    private $product_reference;
-    private $product_reference_type;
-    private $offer_reference;
-    private $offer_reference_type;
-    private $treatment;
-
-    /** Get Variable **/
-    private $product_name;
-    private $product_fnac_id;
-    private $offer_fnac_id;
-    private $offer_seller_id;
-    private $product_url;
-    private $image;
-    private $nb_messages;
-    private $fee_excluding_taxes;
-    private $fee_including_all_taxes;
-
-    /** Both **/
-    private $product_state;
-    private $price;    
-    private $adherent_price;
-    private $quantity;
-    private $description;
-    private $internal_comment;
-    private $showcase;
-    private $promotion;
-
-    const STATE_NEW             = 11;    
+    const STATE_NEW             = 11;
     const STATE_USED_AS_NEW     = 1;
     const STATE_USED_VERY_GOOD  = 2;
     const STATE_USED_GOOD       = 3;
@@ -67,7 +39,73 @@ class Offer extends Entity
         self::STATE_USED_CORRECT    => "Used, correct state",
         self::STATE_REFURBISHED     => "Refurbished"
     );
-    
+
+    /** @var string */
+    private $product_reference;
+
+    /** @var string */
+    private $product_reference_type;
+
+    /** @var string */
+    private $offer_reference;
+
+    /** @var string */
+    private $offer_reference_type;
+
+    /** @var string */
+    private $treatment;
+
+    /** @var string */
+    private $product_name;
+
+    /** @var string */
+    private $product_fnac_id;
+
+    /** @var string */
+    private $offer_fnac_id;
+
+    /** @var string */
+    private $offer_seller_id;
+
+    /** @var string */
+    private $product_url;
+
+    /** @var string */
+    private $image;
+
+    /** @var int */
+    private $nb_messages;
+
+    /** @var int */
+    private $fee_excluding_taxes;
+
+    /** @var int */
+    private $fee_including_all_taxes;
+
+    /** @var int */
+    private $product_state;
+
+    /** @var float */
+    private $price;
+
+    /** @var float */
+    private $adherent_price;
+
+    /** @var int */
+    private $quantity;
+
+    /** @var string */
+    private $description;
+
+    /** @var string */
+    private $internal_comment;
+
+    /** @var int */
+    private $showcase;
+
+    /** @var Promotion */
+    private $promotion;
+
     /**
      * {@inheritDoc}
      */
@@ -90,7 +128,7 @@ class Offer extends Entity
         if (!is_null($this->price)) {
             $data['price'] = $this->price;
         }
-        
+
         if (!is_null($this->adherent_price)) {
             $data['adherent_price'] = $this->adherent_price;
         }
@@ -122,7 +160,7 @@ class Offer extends Entity
         if (!is_null($this->promotion)) {
             $data['promotion'] = $this->promotion;
         }
-        
+
         return $data;
     }
 
@@ -139,7 +177,7 @@ class Offer extends Entity
         $this->price = (float) $data['price'];
         if(isset($data['adherent_price']))
         {
-          $this->adherent_price = (float) $data['adherent_price'];          
+          $this->adherent_price = (float) $data['adherent_price'];
         }
         $this->quantity = (int) $data['quantity'];
         $this->description = $data['description'];
@@ -151,12 +189,12 @@ class Offer extends Entity
 
         $this->offer_reference = $this->offer_fnac_id;
         $this->offer_reference_type = ProductType::ITEM_ID;
-        
+
         if(isset($data['fee_excluding_taxes']))
         {
             $this->fee_excluding_taxes = (float) $data['fee_excluding_taxes'];
         }
-        
+
         if(isset($data['fee_including_all_taxes']))
         {
             $this->fee_including_all_taxes = (float) $data['fee_including_all_taxes'];
@@ -173,7 +211,7 @@ class Offer extends Entity
     /**
      * Set product's reference type
      *
-     * @see FnacApiClient\Type\ProductType
+     * @see \FnacApiClient\Type\ProductType
      *
      * @param string $product_reference_type : Type of product reference
      */
@@ -195,7 +233,7 @@ class Offer extends Entity
     /**
      * Set offer's reference type
      *
-     * @see FnacApiClient\Type\OfferReferenceType
+     * @see \FnacApiClient\Type\OfferReferenceType
      *
      * @param string $offer_reference_type : Type of offer reference
      */
@@ -223,7 +261,7 @@ class Offer extends Entity
     {
         $this->price = $price;
     }
-    
+
     /**
      * Set offer's "adherent" price
      *
@@ -237,7 +275,7 @@ class Offer extends Entity
     /**
      * Set product's state of offer : Only when adding an offer
      *
-     * @param string $product_state Product state to se for this offer
+     * @param int $product_state Product state to se for this offer
      */
     public function setProductState($product_state)
     {
@@ -277,7 +315,7 @@ class Offer extends Entity
     /**
      * Set offer's position in shop's showcase
      *
-     * @param unsigned integer $showcase Offer's position in shop's showcase
+     * @param integer $showcase Offer's position in shop's showcase
      */
     public function setShowcase($showcase)
     {
@@ -287,7 +325,7 @@ class Offer extends Entity
     /**
      * Set treatment to do on offer
      *
-     * @see FnacApiClient\Type\OfferTreatmentType
+     * @see \FnacApiClient\Type\OfferTreatmentType
      *
      * @param string $treatment
      */
@@ -379,7 +417,7 @@ class Offer extends Entity
     /**
      * Product state in this offer
      *
-     * @see FnacApiClient\Type\ProductStateType
+     * @see \FnacApiClient\Type\ProductStateType
      *
      * @return integer
      */
@@ -391,7 +429,7 @@ class Offer extends Entity
     /**
      * Product state label
      *
-     * @see FnacApiClient\Type\ProductStateType
+     * @see \FnacApiClient\Type\ProductStateType
      *
      * @return string
      */
@@ -399,7 +437,7 @@ class Offer extends Entity
     {
         return self::$product_state_names[$this->product_state];
     }
-    
+
     /**
      * Product price for this offer
      *
@@ -419,7 +457,7 @@ class Offer extends Entity
     {
         return $this->adherent_price;
     }
-    
+
     /**
      * Product's quantity in offer
      *
