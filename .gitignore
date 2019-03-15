@@ -1,2 +1,4 @@
 nbproject/
 /fnacapiclient_archive/vendor/
+vendor/
+.idea/
