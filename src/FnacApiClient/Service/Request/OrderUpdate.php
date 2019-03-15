@@ -69,4 +69,12 @@ class OrderUpdate extends Authentified
     {
         $this->orders[] = $order;
     }
+
+    /**
+     * @return \ArrayObject|Order[]
+     */
+    public function getOrders()
+    {
+        return $this->orders;
+    }
 }
